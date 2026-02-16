@@ -1,12 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodStuff.CartApi.Presentation", "GoodStuff.CartApi.Presentation\GoodStuff.CartApi.Presentation.csproj", "{5E450776-C270-4DE7-AC3A-16DF70F43E02}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodStuff.CartApi.Domain", "GoodStuff.CartApi.Domain\GoodStuff.CartApi.Domain.csproj", "{CD79F314-6F3A-4568-B673-E49D116327E1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodStuff.CartApi.Infrastructure", "GoodStuff.CartApi.Infrastructure\GoodStuff.CartApi.Infrastructure.csproj", "{CEEACCAC-7075-4577-AF48-DB9FD4B136BA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodStuff.CartApi.Application", "GoodStuff.CartApi.Application\GoodStuff.CartApi.Application.csproj", "{DD27EAE0-2E5F-4B3C-A68E-35DC3740539F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodStuff.CartApi.Presentation", "GoodStuff.CartApi.Presentation\GoodStuff.CartApi.Presentation.csproj", "{9155B33C-ED27-47DA-8FDE-D84ABEB32B36}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{460C750A-A23C-4201-A307-59EFF6EA4778}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,18 +20,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5E450776-C270-4DE7-AC3A-16DF70F43E02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5E450776-C270-4DE7-AC3A-16DF70F43E02}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5E450776-C270-4DE7-AC3A-16DF70F43E02}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{5E450776-C270-4DE7-AC3A-16DF70F43E02}.Debug|x64.Build.0 = Debug|Any CPU
-		{5E450776-C270-4DE7-AC3A-16DF70F43E02}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{5E450776-C270-4DE7-AC3A-16DF70F43E02}.Debug|x86.Build.0 = Debug|Any CPU
-		{5E450776-C270-4DE7-AC3A-16DF70F43E02}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5E450776-C270-4DE7-AC3A-16DF70F43E02}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5E450776-C270-4DE7-AC3A-16DF70F43E02}.Release|x64.ActiveCfg = Release|Any CPU
-		{5E450776-C270-4DE7-AC3A-16DF70F43E02}.Release|x64.Build.0 = Release|Any CPU
-		{5E450776-C270-4DE7-AC3A-16DF70F43E02}.Release|x86.ActiveCfg = Release|Any CPU
-		{5E450776-C270-4DE7-AC3A-16DF70F43E02}.Release|x86.Build.0 = Release|Any CPU
 		{CD79F314-6F3A-4568-B673-E49D116327E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CD79F314-6F3A-4568-B673-E49D116327E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD79F314-6F3A-4568-B673-E49D116327E1}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -66,8 +56,26 @@ Global
 		{DD27EAE0-2E5F-4B3C-A68E-35DC3740539F}.Release|x64.Build.0 = Release|Any CPU
 		{DD27EAE0-2E5F-4B3C-A68E-35DC3740539F}.Release|x86.ActiveCfg = Release|Any CPU
 		{DD27EAE0-2E5F-4B3C-A68E-35DC3740539F}.Release|x86.Build.0 = Release|Any CPU
+		{9155B33C-ED27-47DA-8FDE-D84ABEB32B36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9155B33C-ED27-47DA-8FDE-D84ABEB32B36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9155B33C-ED27-47DA-8FDE-D84ABEB32B36}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9155B33C-ED27-47DA-8FDE-D84ABEB32B36}.Debug|x64.Build.0 = Debug|Any CPU
+		{9155B33C-ED27-47DA-8FDE-D84ABEB32B36}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9155B33C-ED27-47DA-8FDE-D84ABEB32B36}.Debug|x86.Build.0 = Debug|Any CPU
+		{9155B33C-ED27-47DA-8FDE-D84ABEB32B36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9155B33C-ED27-47DA-8FDE-D84ABEB32B36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9155B33C-ED27-47DA-8FDE-D84ABEB32B36}.Release|x64.ActiveCfg = Release|Any CPU
+		{9155B33C-ED27-47DA-8FDE-D84ABEB32B36}.Release|x64.Build.0 = Release|Any CPU
+		{9155B33C-ED27-47DA-8FDE-D84ABEB32B36}.Release|x86.ActiveCfg = Release|Any CPU
+		{9155B33C-ED27-47DA-8FDE-D84ABEB32B36}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DD27EAE0-2E5F-4B3C-A68E-35DC3740539F} = {460C750A-A23C-4201-A307-59EFF6EA4778}
+		{CD79F314-6F3A-4568-B673-E49D116327E1} = {460C750A-A23C-4201-A307-59EFF6EA4778}
+		{CEEACCAC-7075-4577-AF48-DB9FD4B136BA} = {460C750A-A23C-4201-A307-59EFF6EA4778}
+		{9155B33C-ED27-47DA-8FDE-D84ABEB32B36} = {460C750A-A23C-4201-A307-59EFF6EA4778}
 	EndGlobalSection
 EndGlobal
