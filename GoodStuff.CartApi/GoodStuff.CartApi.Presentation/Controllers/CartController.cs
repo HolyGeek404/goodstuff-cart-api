@@ -1,5 +1,6 @@
 using GoodStuff.CartApi.Application.Features.Commands.AddCart;
 using GoodStuff.CartApi.Application.Features.Queries.GetCart;
+using GoodStuff.CartApi.Presentation.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,35 +23,35 @@ public class CartController(IMediator mediator, ILogger<CartController> logger) 
         }
         catch (ArgumentException ex)
         {
-            logger.LogWarning(ex, "Validation failed while adding item to cart {CartId}", command.CartId);
+            logger.LogValidationFailedWhileAddingItemToCartUserId(ex, command.UserId);
             return BadRequest(ex.Message);
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "Unexpected error while adding item to cart {CartId}", command.CartId);
+            logger.LogUnexpectedErrorWhileAddingItemToCartUserId(ex, command.UserId);
             return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
         }
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetCart([FromQuery] string cartId)
+    public async Task<IActionResult> GetCart([FromQuery] string userId)
     {
         try
         {
-            if (string.IsNullOrWhiteSpace(cartId))
+            if (string.IsNullOrWhiteSpace(userId))
                 return BadRequest("cartId is required");
 
-            var result = await mediator.Send(new GetCartQuery { CartId = cartId });
+            var result = await mediator.Send(new GetCartQuery { UserId = userId });
             return Ok(result);
         }
         catch (ArgumentException ex)
         {
-            logger.LogWarning(ex, "Validation failed while retrieving cart {CartId}", cartId);
+            logger.LogValidationFailedWhileRetrievingCartUserid(ex, userId);
             return BadRequest(ex.Message);
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "Unexpected error while retrieving cart {CartId}", cartId);
+            logger.LogUnexpectedErrorWhileRetrievingCartUserid(ex, userId);
             return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
         }
     }
