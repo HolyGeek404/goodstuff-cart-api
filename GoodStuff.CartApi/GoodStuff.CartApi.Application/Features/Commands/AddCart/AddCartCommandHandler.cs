@@ -5,7 +5,7 @@ using GoodStuff.CartApi.Domain.ValueObjects;
 
 namespace GoodStuff.CartApi.Application.Features.Commands.AddCart;
 
-public class AddCartCommandHandler(CartService cartService) : IRequestHandler<AddCartCommand, Unit>
+public class AddCartCommandHandler(CacheService cacheService) : IRequestHandler<AddCartCommand, Unit>
 {
     public async Task<Unit> Handle(AddCartCommand request, CancellationToken cancellationToken)
     {
@@ -17,7 +17,7 @@ public class AddCartCommandHandler(CartService cartService) : IRequestHandler<Ad
             Price = Price.Create(request.Price)
         };
 
-        await cartService.AddItemAsync(request.UserId, product);
+        await cacheService.AddItemAsync(request.UserId, product);
         return Unit.Value;
     }
 }

@@ -6,10 +6,10 @@ using MediatR;
 
 namespace GoodStuff.CartApi.Application.Features.Queries.GetCart;
 
-public class GetCartQueryHandler(CartService cartService) : IRequestHandler<GetCartQuery, IReadOnlyCollection<ProductDto>>
+public class GetCartQueryHandler(CacheService cacheService) : IRequestHandler<GetCartQuery, IReadOnlyCollection<ProductDto>>
 {
     public async Task<IReadOnlyCollection<ProductDto>> Handle(GetCartQuery request, CancellationToken cancellationToken)
     {
-       return await cartService.GetCartAsync(request.UserId);
+       return await cacheService.GetCartAsync(request.UserId);
     }
 }

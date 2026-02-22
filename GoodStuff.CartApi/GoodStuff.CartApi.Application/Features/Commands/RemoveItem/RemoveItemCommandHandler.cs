@@ -3,11 +3,11 @@ using MediatR;
 
 namespace GoodStuff.CartApi.Application.Features.Commands.RemoveItem;
 
-public class RemoveItemCommandHandler(CartService cartService) : IRequestHandler<RemoveItemCommand, Unit>
+public class RemoveItemCommandHandler(CacheService cacheService) : IRequestHandler<RemoveItemCommand, Unit>
 {
     public async Task<Unit> Handle(RemoveItemCommand request, CancellationToken cancellationToken)
     {
-        await cartService.RemoveItemAsync(request.CartId, request.ProductId);
+        await cacheService.RemoveItemAsync(request.CartId, request.ProductId);
         return Unit.Value;
     }
 }

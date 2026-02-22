@@ -5,7 +5,7 @@ using StackExchange.Redis;
 
 namespace GoodStuff.CartApi.Application.Services;
 
-public class CartService(IConnectionMultiplexer connection)
+public class CacheService(IConnectionMultiplexer connection)
 {
     private readonly IDatabase _redis = connection.GetDatabase();
     private const int CartExpirationMinutes = 60;
