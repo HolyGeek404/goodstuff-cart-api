@@ -1,6 +1,7 @@
 using System.Net.Http.Json;
 using System.Text.Json;
 using GoodStuff.CartApi.Application.Features.Commands.AddCart;
+using GoodStuff.CartApi.Application.Features.Commands.RemoveItem;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
 
@@ -49,23 +50,18 @@ public class CartControllerTest(WebApplicationFactory<Program> factory) : IClass
     [Fact]
     public async Task RemoveItem_WhenItemExists_ShouldReturnOkAndRemoveFromCart()
     {
-        var userId = $"test-{Guid.NewGuid():N}";
-        var command = new AddCartCommand
-        {
-            UserId = userId,
-            ProductId = "prod-1",
-            Name = "GPU",
-            Quantity = 1,
-            Price = 1200
-        };
-
-        await _client.PostAsJsonAsync("/Cart", command);
-
-        var removeResponse = await _client.DeleteAsync($"/Cart/{userId}/items/{command.ProductId}");
+        // Arrange
+        await _client.PostAsJsonAsync("/Cart", _addCartCommand);
+        
+        // Act
+        var removeResponse = await _client.DeleteAsync($"/Cart?userId={_addCartCommand.UserId}&productId={_addCartCommand.ProductId}");
+        
+        // Assert
         removeResponse.EnsureSuccessStatusCode();
 
-        var getResponse = await _client.GetAsync($"/Cart?userId={userId}");
+        var getResponse = await _client.GetAsync($"/Cart?userId={_addCartCommand.UserId}");
         getResponse.EnsureSuccessStatusCode();
+        
         var content = await getResponse.Content.ReadAsStringAsync();
         using var json = JsonDocument.Parse(content);
         var items = json.RootElement;

@@ -58,25 +58,25 @@ public class CartController(IMediator mediator, ILogger<CartController> logger) 
     }
 
     [HttpDelete]
-    public async Task<IActionResult> RemoveItem([FromBody] RemoveItemCommand command)
+    public async Task<IActionResult> RemoveItem([FromQuery] string userId, [FromQuery] string productId)
     {
         try
         {
             if (!ModelState.IsValid)
                 return BadRequest("Invalid cart");
 
-            await mediator.Send(command);
+            await mediator.Send(new RemoveItemCommand { UserId = userId, ProductId = productId });
 
             return Ok();
         }
         catch (ArgumentException ex)
         {
-            logger.LogValidationFailedWhileRemovingItemFromCart(ex, command.UserId, command.ProductId);
+            logger.LogValidationFailedWhileRemovingItemFromCart(ex, userId, productId);
             return BadRequest(ex.Message);
         }
         catch (Exception ex)
         {
-            logger.LogUnexpectedErrorWhileRemovingItemFromCart(ex, command.UserId, command.ProductId);
+            logger.LogUnexpectedErrorWhileRemovingItemFromCart(ex, userId, productId);
             return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
         }
     }
