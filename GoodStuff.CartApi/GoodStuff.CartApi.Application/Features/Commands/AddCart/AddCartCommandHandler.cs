@@ -11,7 +11,7 @@ public class AddCartCommandHandler(CartService cartService) : IRequestHandler<Ad
     {
         var product = new Product
         {
-            Id = request.Id,
+            Id = request.ProductId,
             Name = request.Name,
             Quantity = Quantity.Create(request.Quantity),
             Price = Price.Create(request.Price)

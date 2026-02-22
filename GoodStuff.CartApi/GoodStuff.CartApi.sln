@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E040DCD5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodStuff.CartApi.Application.Test", "GoodStuff.CartApi.Application.Test\GoodStuff.CartApi.Application.Test.csproj", "{CE24992C-DB7C-4C76-925B-3AEF16BE7A62}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodStuff.CartApi.Presentation.Test", "GoodStuff.CartApi.Presentation.Test\GoodStuff.CartApi.Presentation.Test.csproj", "{BDEA9761-37DE-4673-A6C7-BE81E54B60CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -84,6 +86,18 @@ Global
 		{CE24992C-DB7C-4C76-925B-3AEF16BE7A62}.Release|x64.Build.0 = Release|Any CPU
 		{CE24992C-DB7C-4C76-925B-3AEF16BE7A62}.Release|x86.ActiveCfg = Release|Any CPU
 		{CE24992C-DB7C-4C76-925B-3AEF16BE7A62}.Release|x86.Build.0 = Release|Any CPU
+		{BDEA9761-37DE-4673-A6C7-BE81E54B60CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDEA9761-37DE-4673-A6C7-BE81E54B60CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDEA9761-37DE-4673-A6C7-BE81E54B60CE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BDEA9761-37DE-4673-A6C7-BE81E54B60CE}.Debug|x64.Build.0 = Debug|Any CPU
+		{BDEA9761-37DE-4673-A6C7-BE81E54B60CE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BDEA9761-37DE-4673-A6C7-BE81E54B60CE}.Debug|x86.Build.0 = Debug|Any CPU
+		{BDEA9761-37DE-4673-A6C7-BE81E54B60CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDEA9761-37DE-4673-A6C7-BE81E54B60CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDEA9761-37DE-4673-A6C7-BE81E54B60CE}.Release|x64.ActiveCfg = Release|Any CPU
+		{BDEA9761-37DE-4673-A6C7-BE81E54B60CE}.Release|x64.Build.0 = Release|Any CPU
+		{BDEA9761-37DE-4673-A6C7-BE81E54B60CE}.Release|x86.ActiveCfg = Release|Any CPU
+		{BDEA9761-37DE-4673-A6C7-BE81E54B60CE}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,5 +108,6 @@ Global
 		{CEEACCAC-7075-4577-AF48-DB9FD4B136BA} = {460C750A-A23C-4201-A307-59EFF6EA4778}
 		{9155B33C-ED27-47DA-8FDE-D84ABEB32B36} = {460C750A-A23C-4201-A307-59EFF6EA4778}
 		{CE24992C-DB7C-4C76-925B-3AEF16BE7A62} = {E040DCD5-1E00-4F87-8503-0C9407576E1A}
+		{BDEA9761-37DE-4673-A6C7-BE81E54B60CE} = {E040DCD5-1E00-4F87-8503-0C9407576E1A}
 	EndGlobalSection
 EndGlobal

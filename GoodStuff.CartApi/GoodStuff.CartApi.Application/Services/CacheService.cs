@@ -1,5 +1,6 @@
+using System.Text.Json;
+using GoodStuff.CartApi.Application.DTO;
 using GoodStuff.CartApi.Domain;
-using GoodStuff.CartApi.Domain.ValueObjects;
 using StackExchange.Redis;
 
 namespace GoodStuff.CartApi.Application.Services;
@@ -14,30 +15,24 @@ public class CartService(IConnectionMultiplexer connection)
     public async Task AddItemAsync(string userId, Product product)
     {
         var key = GetCartKey(userId);
-
-        await _redis.HashIncrementAsync(key, product.Id, product.Quantity.Value);
+        var productJson = JsonSerializer.Serialize(new ProductDto
+        {
+            Id = product.Id,
+            Name = product.Name,
+            Price = product.Price.Value,
+            Quantity = product.Quantity.Value,
+        });
+        
+        await _redis.HashSetAsync(key, product.Id, productJson);
         await _redis.KeyExpireAsync(key, TimeSpan.FromMinutes(CartExpirationMinutes));
     }
 
-    public async Task<IReadOnlyCollection<Product>> GetCartAsync(string userId)
+    public async Task<IReadOnlyCollection<ProductDto>> GetCartAsync(string userId)
     {
         var key = GetCartKey(userId);
 
         var entries = await _redis.HashGetAllAsync(key);
-
-        if (entries.Length == 0)
-            return [];
-
-        var items = entries
-            .Select(entry => new Product
-            {
-                Id = entry.Name.ToString(),
-                Name = entry.Name.ToString(),
-                Quantity = Quantity.Create((int)entry.Value),
-                Price = Price.Create(0)
-            }).ToList();
-
-        return items;
+        return entries.Select(e => JsonSerializer.Deserialize<ProductDto>(e.Value.ToString())).ToList()!;
     }
 
     public async Task RemoveItemAsync(string userId, string productId)
