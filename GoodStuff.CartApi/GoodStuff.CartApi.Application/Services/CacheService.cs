@@ -23,8 +23,7 @@ public class CacheService(IConnectionMultiplexer connection)
             Quantity = product.Quantity.Value,
         });
         
-        await _redis.HashSetAsync(key, product.Id, productJson);
-        await _redis.KeyExpireAsync(key, TimeSpan.FromMinutes(CartExpirationMinutes));
+
     }
 
     public async Task<IReadOnlyCollection<ProductDto>> GetCartAsync(string userId)
