@@ -7,7 +7,7 @@ public class RemoveItemCommandHandler(CacheService cacheService) : IRequestHandl
 {
     public async Task<Unit> Handle(RemoveItemCommand request, CancellationToken cancellationToken)
     {
-        await cacheService.RemoveItemAsync(request.CartId, request.ProductId);
+        await cacheService.RemoveItemAsync(request.UserId, request.ProductId);
         return Unit.Value;
     }
 }

@@ -45,6 +45,32 @@ public class CartControllerTest(WebApplicationFactory<Program> factory) : IClass
         Assert.Equal(_addCartCommand.Name, firstItem.GetProperty("name").GetString());
         Assert.Equal(_addCartCommand.Price, firstItem.GetProperty("price").GetInt32());
     }
-    
-    
+
+    [Fact]
+    public async Task RemoveItem_WhenItemExists_ShouldReturnOkAndRemoveFromCart()
+    {
+        var userId = $"test-{Guid.NewGuid():N}";
+        var command = new AddCartCommand
+        {
+            UserId = userId,
+            ProductId = "prod-1",
+            Name = "GPU",
+            Quantity = 1,
+            Price = 1200
+        };
+
+        await _client.PostAsJsonAsync("/Cart", command);
+
+        var removeResponse = await _client.DeleteAsync($"/Cart/{userId}/items/{command.ProductId}");
+        removeResponse.EnsureSuccessStatusCode();
+
+        var getResponse = await _client.GetAsync($"/Cart?userId={userId}");
+        getResponse.EnsureSuccessStatusCode();
+        var content = await getResponse.Content.ReadAsStringAsync();
+        using var json = JsonDocument.Parse(content);
+        var items = json.RootElement;
+
+        Assert.Equal(JsonValueKind.Array, items.ValueKind);
+        Assert.Equal(0, items.GetArrayLength());
+    }
 }

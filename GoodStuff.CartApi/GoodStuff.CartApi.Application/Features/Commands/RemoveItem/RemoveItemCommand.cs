@@ -5,6 +5,6 @@ namespace GoodStuff.CartApi.Application.Features.Commands.RemoveItem;
 
 public class RemoveItemCommand : IRequest<Unit>
 {
-    [Required] public required string CartId { get; init; }
+    [Required] public required string UserId { get; init; }
     [Required] public required string ProductId { get; init; }
 }

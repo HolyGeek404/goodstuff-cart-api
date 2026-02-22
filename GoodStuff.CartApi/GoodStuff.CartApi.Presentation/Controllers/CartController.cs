@@ -1,4 +1,5 @@
 using GoodStuff.CartApi.Application.Features.Commands.AddCart;
+using GoodStuff.CartApi.Application.Features.Commands.RemoveItem;
 using GoodStuff.CartApi.Application.Features.Queries.GetCart;
 using GoodStuff.CartApi.Presentation.Extensions;
 using MediatR;
@@ -52,6 +53,30 @@ public class CartController(IMediator mediator, ILogger<CartController> logger) 
         catch (Exception ex)
         {
             logger.LogUnexpectedErrorWhileRetrievingCartUserid(ex, userId);
+            return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
+        }
+    }
+
+    [HttpDelete]
+    public async Task<IActionResult> RemoveItem([FromBody] RemoveItemCommand command)
+    {
+        try
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Invalid cart");
+
+            await mediator.Send(command);
+
+            return Ok();
+        }
+        catch (ArgumentException ex)
+        {
+            logger.LogValidationFailedWhileRemovingItemFromCart(ex, command.UserId, command.ProductId);
+            return BadRequest(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            logger.LogUnexpectedErrorWhileRemovingItemFromCart(ex, command.UserId, command.ProductId);
             return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
         }
     }

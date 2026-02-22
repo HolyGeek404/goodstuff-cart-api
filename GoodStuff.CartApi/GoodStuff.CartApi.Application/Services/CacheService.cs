@@ -35,22 +35,12 @@ public class CacheService(IConnectionMultiplexer connection)
         return entries.Select(e => JsonSerializer.Deserialize<ProductDto>(e.Value.ToString())).ToList()!;
     }
 
-    public async Task RemoveItemAsync(string userId, string productId)
+    public async Task<bool> RemoveItemAsync(string userId, string productId)
     {
         var key = GetCartKey(userId);
 
         var removed = await _redis.HashDeleteAsync(key, productId);
-        if (!removed)
-            return;
-
-        var remainingItems = await _redis.HashLengthAsync(key);
-        if (remainingItems == 0)
-        {
-            await _redis.KeyDeleteAsync(key);
-            return;
-        }
-
-        await _redis.KeyExpireAsync(key, TimeSpan.FromMinutes(CartExpirationMinutes));
+        return removed;
     }
 
     public async Task ClearCartAsync(string userId)
