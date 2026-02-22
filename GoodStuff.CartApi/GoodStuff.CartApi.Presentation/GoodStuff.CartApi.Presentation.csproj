@@ -10,9 +10,6 @@
         <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.4.0" />
         <PackageReference Include="Azure.Identity" Version="1.17.1" />
         <PackageReference Include="MediatR" Version="14.0.0" />
-        <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="10.0.3" />
-        <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.3" />
-        <PackageReference Include="StackExchange.Redis" Version="2.11.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="10.0.1" />
     </ItemGroup>
 

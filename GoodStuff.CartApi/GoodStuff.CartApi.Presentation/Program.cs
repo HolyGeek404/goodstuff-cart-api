@@ -9,7 +9,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(AddCartCommand).Assembly));
-builder.Services.AddScoped<CacheService>();
+builder.Services.AddScoped<ICacheService, CacheService>();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 
 builder.Configuration.AddAzureKeyVault(new Uri(builder.Configuration.GetSection("AzureAd")["KvUrl"]!), new DefaultAzureCredential());

@@ -18,9 +18,9 @@ public class CacheServiceTests
         Price = Price.Create(32),
         Quantity = Quantity.Create(3)
     };
-        
+
     private const string UserId = "test";
-        
+
 
     public CacheServiceTests()
     {
@@ -52,6 +52,30 @@ public class CacheServiceTests
                 p.Price == expectedDto.Price &&
                 p.Quantity == expectedDto.Quantity)),
             Times.Once);
+    }
+
+    [Fact]
+    public async Task GetCartAsync_WhenRepositoryReturnsNullItem_FiltersOutNulls()
+    {
+        // Arrange
+        var product = new ProductDto
+        {
+            Id = "p-1",
+            Name = "CPU",
+            Price = 1000,
+            Quantity = 1
+        };
+
+        _redisRepositoryMock
+            .Setup(x => x.GetCartAsync(UserId))
+            .ReturnsAsync(new List<ProductDto?> { product, null });
+
+        // Act
+        var result = await _cacheService.GetCartAsync(UserId);
+
+        // Assert
+        Assert.Single(result);
+        Assert.Equal("p-1", result.First().Id);
     }
 
     [Fact]

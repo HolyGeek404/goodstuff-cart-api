@@ -5,7 +5,7 @@ using GoodStuff.CartApi.Domain.ValueObjects;
 
 namespace GoodStuff.CartApi.Application.Features.Commands.AddCart;
 
-public class AddCartCommandHandler(CacheService cacheService) : IRequestHandler<AddCartCommand, Unit>
+public class AddCartCommandHandler(ICacheService cacheService) : IRequestHandler<AddCartCommand, Unit>
 {
     public async Task<Unit> Handle(AddCartCommand request, CancellationToken cancellationToken)
     {

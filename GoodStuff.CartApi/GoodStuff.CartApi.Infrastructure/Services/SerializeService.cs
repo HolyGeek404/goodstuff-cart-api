@@ -8,7 +8,7 @@ public class SerializeService : ISerializeService
     {
         return JsonSerializer.Serialize(obj);
     }
-    
+
     public T? Deserialize<T>(string json)
     {
         return JsonSerializer.Deserialize<T>(json);

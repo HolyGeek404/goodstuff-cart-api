@@ -8,7 +8,8 @@ public static class ProductMapper
 {
     public static ProductDto Map(Product product)
     {
-       return new ProductDto {
+        return new ProductDto
+        {
             Id = product.Id,
             Name = product.Name,
             Price = product.Price.Value,
