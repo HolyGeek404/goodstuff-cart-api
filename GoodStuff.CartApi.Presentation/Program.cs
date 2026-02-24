@@ -12,7 +12,6 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(AddCa
 builder.Services.AddScoped<ICacheService, CacheService>();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 
-builder.Configuration.AddAzureKeyVault(new Uri(builder.Configuration.GetSection("AzureAd")["KvUrl"]!), new DefaultAzureCredential());
 
 var app = builder.Build();
 

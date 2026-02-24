@@ -1,3 +1,4 @@
+using Azure.Identity;
 using GoodStuff.CartApi.Application.Services;
 using GoodStuff.CartApi.Infrastructure.Repositories;
 using GoodStuff.CartApi.Infrastructure.Services;
@@ -9,14 +10,17 @@ namespace GoodStuff.CartApi.Infrastructure.Extensions;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfigurationManager configuration)
     {
         services.AddSingleton<IConnectionMultiplexer>(_ =>
         {
-            var redisConnectionString = Environment.GetEnvironmentVariable("REDIS_CONNSTR") ??
-                                        configuration.GetSection("Redis")["LocalConnStr"];
+            var redisConnStr = Environment.GetEnvironmentVariable("REDIS_CONNSTR");
+            if (redisConnStr != null) return ConnectionMultiplexer.Connect(redisConnStr!);
+            
+            configuration.AddAzureKeyVault(new Uri(configuration.GetSection("AzureAd")["KvUrl"]!), new DefaultAzureCredential());
+            redisConnStr = configuration.GetSection("Redis")["LocalConnStr"];
 
-            return ConnectionMultiplexer.Connect(redisConnectionString!);
+            return ConnectionMultiplexer.Connect(redisConnStr!);
         });
 
         services.AddScoped<ISerializeService, SerializeService>();
