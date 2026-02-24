@@ -10,7 +10,7 @@ namespace GoodStuff.CartApi.Application.Test.Services;
 public class CacheServiceTests
 {
     private readonly Mock<IRedisRepository> _redisRepositoryMock;
-    private readonly CacheService _cacheService;
+    private readonly ICacheService _cacheService;
     private readonly Product _product = new()
     {
         Id = "432",

@@ -24,6 +24,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\GoodStuff.CartApi.Application\GoodStuff.CartApi.Application.csproj" />
+        <ProjectReference Include="..\GoodStuff.CartApi.Infrastructure\GoodStuff.CartApi.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>
